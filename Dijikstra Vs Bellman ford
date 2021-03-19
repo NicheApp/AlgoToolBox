@@ -1,0 +1,23 @@
+Undirected graph
+ * If any graph has -ve edge weight than both algorithm not works..
+
+directed graph
+* if andy graph has -ve edge weight cycle than 
+- dijikstra may give wrong answer but don't tell that a graph has -ve edge weight cycle .. but bellman ford will tell that graph has -ve edge weight cycle.
+However bellman ford and dijikstra both doesnt work for -ve edge weight cycle.
+
+Note - -ve edge weight cycle is different from -ve edge weight .. a graph contains -ve edge weight may or may not have -ve edge weight cycle. for detecting -vedge weight
+cycle we can use bellman ford algorithm..
+----------------------------------------------------------------------------------------------------------------
+Time complexity
+
+Dijikstra -   E(logv) 
+Bellman ford - (V*E)
+where E=no. of edges and V are no. of vertices
+---------------------------------------------------------------------------------------------------------------
+when to use dijikstra ?
+if graph is directed and you are sure about that their wont be any -ve edge weight cycle than we will definitely go to dijikstra
+if graph i undirected and we know that all weights of edges are +ve than we can definitely use dijikstra
+
+when to use Bellman ford ?
+if graph is directed and you are not sure about that their wont be any -ve edge weight cycle than we will go to bellman ford algorithm.
