@@ -1,0 +1,27 @@
+Bottom Up Approach(tablulation) Vs Top Down Approach(Memoization)
+
+Find factorial  1 to N using Tabulation using tabulation method
+
+//tabulation
+int dp[n+1];
+dp[0]=1;
+for(int i=1;i<=n;i++)
+ dp[i]=dp[i-1]*i;
+
+//Memoization
+int findfact(int dp[],int n)
+{
+if(n==0)
+return 1;
+return (dp[n]=n*findfact(dp,n-1));
+}
+
+int main(){
+int dpm[n+1];
+memset(dpm,-1,sizeof(dpm));
+findfact(dpm,n+1);
+return 0;
+}
+         Tabulation            vs                 Memoixation
+state-state transition is difficult             State transition is easy
+code- code is complicated                       code is easy and less complicated
