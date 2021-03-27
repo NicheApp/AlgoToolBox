@@ -1,1 +1,69 @@
+Ugly numbers without using DP- TIme complexity O(nlogn)
+=============================================================================================================
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int main()
+{
+std::ios::sync_with_stdio(false);
+cin.tie(NULL);
+int n=10;
+int count=0,i=1;
+while(count<n)
+{
 
+if(checkugly(i))
+{
+    count++;
+    if(count==n) break;
+}
+i++;
+
+}
+cout<<i<<endl;
+return 0;
+}
+====================================================================================================================
+OUTPUT:- 12
+====================================================================================================================
+Ugly numbers with using DP- TIme complexity O(n) using bottom Up Approach Tabulation
+====================================================================================
+#include<bits/stdc++.h>
+using namespace std;
+int Nthuglynum(int n)
+{
+ugly[n];
+ugly[0]=1;
+int mulof2=2,mulof3=3,mulof5=5,nextugly=1,i2=0,i3=0,i5=0;
+for(i=1;i<n;i++)
+{
+nextugly=min(mulof2,min(mul0f3,mulof5));
+ugly[i]=nextugly;
+if(nextugly==mulof2)
+{
+i2=i2+1;
+mulof2=ugly[i]*i2;
+}
+if(nextugly==mulof3)
+{
+i3=i3+1;
+mulof2=ugly[i]*i3;
+}
+if(nextugly==mulof5)
+{
+i5=i5+1;
+mulof2=ugly[i]*i5;
+}
+
+}
+return nextugly;
+}
+int main()
+{
+int n=10;
+cout<<Nthuglynum(n);
+return 0;
+}
+======================================================================================
+Output:-12 
+======================================================================================
