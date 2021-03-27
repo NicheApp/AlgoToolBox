@@ -28,7 +28,7 @@ public:
             
             if(sum<=maxSum)
             {
-                
+                 
                 
                 ans=mid;
                 start=mid+1;
