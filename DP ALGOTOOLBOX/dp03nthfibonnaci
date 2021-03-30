@@ -1,0 +1,58 @@
+//Tabulation technique
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int main()
+{
+std::ios::sync_with_stdio(false);
+cin.tie(NULL);
+int t;
+cin>>t;
+while(t--)
+{
+int n,i,j,k;
+cin>>n;
+///nth fibonaaci using tabulation technique---
+int fib[n+1];
+fib[0]=0;fib[1]=1;
+for(int i=2;i<=n;i++)
+{
+
+   fib[i]=fib[i-1]+fib[i-2]; 
+}
+cout<<fib[n];
+}
+return 0;
+}
+
+//memoization technique
+
+  #include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int fibonacci(int n,int fib[])
+{
+   
+    if(fib[n]!=-1)
+    return fib[n];
+  return fib[n]=fibonacci(n-1,fib)+fibonacci(n-2,fib);
+
+}
+int main()
+{
+std::ios::sync_with_stdio(false);
+cin.tie(NULL);
+int t;
+cin>>t;
+while(t--)
+{
+int n,i,j,k;
+cin>>n;
+int fib[n+1];
+memset(fib,-1,sizeof(fib));
+fib[0]=0;fib[1]=1;
+cout<<fibonacci(n,fib);
+}
+return 0;
+}
