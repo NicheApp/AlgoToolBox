@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int backtrack(vector<int>& coins,int n,int target,map<int,int> &dp){
+      if(target==0)
+          return 0;
+        int mn=999999;
+    for(int i=0;i<n;i++)
+    {
+       if(target-coins[i]>=0)
+       {    int subans=0;
+           if(dp[target-coins[i]]!=0 )
+               subans=dp[target-coins[i]];
+           else
+               subans=backtrack(coins,n,target-coins[i],dp);
+                 if(subans!=999999)
+              mn=min(mn,1+subans);
+           
+       }
+        
+    }
+     return dp[target]=mn;   
+    
+}
+    int coinChange(vector<int>& coins, int amount) {
+        map<int,int> dp;
+      long long  d= backtrack(coins,coins.size(),amount,dp);
+        
+        if(d!=999999)
+            return d;
+        else return -1;
+    }
+};
