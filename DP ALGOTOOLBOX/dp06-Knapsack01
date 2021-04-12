@@ -1,0 +1,41 @@
+class Solution{
+    public:
+    // Returns the maximum value that  
+    // can be put in a knapsack of capacity W 
+    int ks(int w, int wt[],int val[],int n,int i, int** dp)
+    {
+        if(w<=0 || i>=n)
+        return 0;
+       int include=0,exclude=0;
+       if(w-wt[i]>=0){
+        
+        if(i+1<n && dp[i+1][w-wt[i]]!=-1)
+        include=val[i]+dp[i+1][w-wt[i]];
+        else
+        include=val[i]+ks(w-wt[i],wt,val,n,i+1,dp);
+      
+       }
+       if(i+1<n && dp[i+1][w]!=-1)
+       exclude=dp[i+1][w];
+       else
+        exclude=ks(w,wt,val,n,i+1,dp);
+        
+    return dp[i][w]=max(include,exclude);    
+        
+    }
+    int knapSack(int W, int wt[], int val[], int n) 
+    { 
+         int** dp;
+    dp = new int*[n];
+ 
+    for (int i = 0; i < n; i++)
+        dp[i] = new int[W + 1];
+ 
+  
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < W + 1; j++)
+            dp[i][j] = -1;
+      
+       return ks(W,wt,val,n,0,dp);
+    }
+};
