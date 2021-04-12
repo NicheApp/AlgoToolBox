@@ -1,0 +1,32 @@
+class Solution{
+    public:
+    int findsol(int a[],int n,int pos,map<int,int> &mp)
+    {
+        if(pos+a[pos]>=n-1) return 1;
+        
+        int mn=INT_MAX;
+        for(int i=1;i<=a[pos] ;i++)
+        {
+            int subjump=0;
+            if(mp[pos+i]!=0)
+            subjump=mp[pos+i];
+            else
+            subjump=findsol(a,n,pos+i,mp);
+            if(subjump!=INT_MAX)
+            mn=min(mn,subjump+1);
+        }
+        
+        return mp[pos]=mn;
+    }
+    
+        int minimumjumps(int arr[],int n){
+        // code here
+      map<int,int>mp;
+         int k= findsol(arr,n,0,mp);
+       
+         if(k==INT_MAX)
+         return -1;
+         else
+         return k;
+    }
+};
