@@ -1,0 +1,32 @@
+class Solution
+{
+    public:
+    //Function to find the maximum number of cuts.
+    int cutdp(int n, int x, int y, int z,vector<int> &dp)
+    {
+        if(n==0)
+         return 0;
+         
+        int subansx=INT_MIN,subansy=INT_MIN,subansz=INT_MIN;
+        if(n>=x)
+        dp[n-x]!=-1?subansx=dp[n-x]:subansx=cutdp(n-x,x,y,z,dp);
+        if(n>=y)
+        dp[n-y]!=-1?subansy=dp[n-y]:subansy=cutdp(n-y,x,y,z,dp);
+        if(n>=z)
+        dp[n-z]!=-1?subansz=dp[n-z]:subansz=cutdp(n-z,x,y,z,dp);
+        
+        return dp[n]=1+max(subansx,max(subansy,subansz));
+    }
+    int maximizeTheCuts(int n, int x, int y, int z)
+    {
+    
+        vector<int> dp(n+1,-1);
+       
+         int d=cutdp(n,x,y,z,dp);
+        // for(int i=0;i<=n;i++)
+         //cout<<i<<"="<<dp[i]<<endl;
+         if(d<0)
+         return 0;
+         return d;
+    }
+};
