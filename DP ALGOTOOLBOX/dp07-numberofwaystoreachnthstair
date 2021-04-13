@@ -1,0 +1,56 @@
+Memoization technique-
+class Solution
+{
+    public:
+    int ans=0;
+    //Function to count number of ways to reach the nth stair.
+    int countwaysdp(int m,int i,vector<int> &dp){
+  if(i==m)
+  {
+      return 1;
+  }
+  if(i>m)
+  return 0;
+  int subans=0;
+   if(dp[i+1]!=-1)
+   subans=(subans+(dp[i+1]))%1000000007;
+   else
+  subans=(subans+countwaysdp(m,i+1,dp))%1000000007;
+  if(dp[i+2]!=-1)
+   subans=(subans+(dp[i+2]))%1000000007;
+   else
+  subans=(subans+countwaysdp(m,i+2,dp))%1000000007;
+    
+    return dp[i]=subans;    
+    }
+    
+    int countWays(int m)
+    {
+        // your code here
+        vector<int> dp(m+1,-1);
+        if(m==1) return 1;
+        /*for(int i=0;i<m;i++)
+        cout<<dp[i]<<endl;*/
+        return countwaysdp(m,0,dp);
+        
+    }
+};
+
+
+Tabulation Technique
+
+class Solution
+{
+    public:
+    int ans=0;
+    int countWays(int m){
+    vector<int>dp(m+1,0);
+      dp[0]=1;
+      dp[1]=1;
+      dp[2]=2;
+      for(int i=3;i<=m;i++)
+        dp[i]=(dp[i-1]%1000000007+dp[i-2]%1000000007)%1000000007;
+    return dp[m]; 
+        
+    }
+};
