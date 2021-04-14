@@ -1,0 +1,36 @@
+class Solution{
+public:
+   int ks(int n,int arr[],int lval,int rval,int i,vector<vector<int>> &dp){
+        if(i==n)
+        return lval==rval?1:0;
+          
+        int l=0,r=0;
+        if(dp[i+1][lval+arr[i]]!=-1)
+        l=dp[i+1][lval+arr[i]];
+        else
+        l=ks(n,arr,lval+arr[i],rval,i+1,dp);
+        
+        if(dp[i+1][lval]!=-1)
+        r=dp[i+1][lval];
+        else
+        r=ks(n,arr,lval,rval+arr[i],i+1,dp);
+        
+            if(l==1 || r==1)
+            return dp[i][lval]= 1;
+            else 
+            return dp[i][lval]=0;
+        
+        
+    }
+    int equalPartition(int N, int arr[])
+    {
+        int sum=0;
+        for(int i=0;i<N;i++)
+        sum+=arr[i];
+       vector<vector<int>> dp(N+1,vector<int>(sum+1,-1));
+      
+       return ks(N,arr,0,0,0,dp);
+
+        // code here
+    }
+};
