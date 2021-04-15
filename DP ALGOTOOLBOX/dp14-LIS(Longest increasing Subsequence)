@@ -1,0 +1,25 @@
+class Solution {
+public:
+   int lcsinc(vector<int>& nums,int i, int n, int previndex,vector<vector<int>> &dp)
+    {
+  if(i==n)
+      return 0;
+       int include=0,exclude=0;
+     if(previndex==-1 ||nums[i]>nums[previndex])
+     { dp[i+1][i]!=-1?include= 1+dp[i+1][i]:include= 1+lcsinc(nums,i+1,n,i,dp);}
+     
+       if(previndex!=-1 && dp[i+1][previndex]!=-1)
+           exclude=dp[i+1][previndex];
+          else  exclude=lcsinc(nums,i+1,n,previndex,dp);   
+       
+       if(previndex!=-1)
+           dp[i][previndex]=max(include,exclude);
+       return max(include,exclude);
+       
+    }
+    int lengthOfLIS(vector<int>& nums) {
+        vector<vector<int>> dp(nums.size()+1,vector<int>(nums.size()+1,-1));
+   return lcsinc(nums,0,nums.size(),-1,dp);
+     
+    }
+};
