@@ -1,0 +1,39 @@
+class Solution{
+public:
+
+  int pairs(int n,vector<long long> &dp){
+    if(n<0)
+    return 0;
+  
+
+    if(n==0)
+    return 1;
+    int single=0,pair=0;
+ if((n-1)>=0 && dp[n-1]!=-1)
+ single=dp[n-1]%1000000007;
+ else
+ single=pairs(n-1,dp)%1000000007;
+ 
+ if((n-2)>=0 && dp[n-2]!=-1)
+ pair=(((n-1)%1000000007)*(dp[n-2]%1000000007))%1000000007;
+ else
+ pair=(((n-1)%1000000007)*(pairs(n-2,dp)%1000000007))%1000000007;
+    
+ 
+
+     
+      
+return dp[n] = (single%1000000007+pair%1000000007)%1000000007 ;
+       
+      
+  }
+  
+int countFriendsPairings(int n) { 
+        // code here
+       vector<long long>dp(n+1,-1);
+       
+return pairs(n,dp);
+ 
+
+    }
+}
