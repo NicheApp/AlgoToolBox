@@ -1,0 +1,24 @@
+class Solution {
+public:
+ int findsquaredp(int n,vector<int> &dp)
+  {
+    if(n==0)
+      return 0;
+    if(dp[n]!=-1)
+      return dp[n];
+    int ans=INT_MAX;
+    for(int i=1;i*i<=n;i++)
+    {
+     int subans=0; 
+    subans= 1+findsquaredp(n-(i*i),dp);
+       ans=min(ans,subans);
+    }
+    
+    return dp[n]=ans;
+  }
+    int numSquares(int n) {
+      vector<int> dp(n+1,-1);
+ return findsquaredp(n,dp);  
+    
+    }
+};
