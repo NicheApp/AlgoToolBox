@@ -1,0 +1,83 @@
+Tabulation
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main()
+{
+std::ios::sync_with_stdio(false);
+cin.tie(NULL);
+int t=0;
+int n,x;
+int mod =1e9+7;
+cin>>n>>x;
+int a[n];
+for(int i=0;i<n;i++)
+cin>>a[i];
+
+vector<int> dp(x+1,0);
+
+dp[0]=1;
+
+for(int i=1;i<=x;i++)
+{
+
+for(int j=0;j<n ;j++)
+{
+if(i-a[j]>=0){
+(dp[i]+=dp[i-a[j]])%=mod;
+}
+}
+    
+}
+cout<<dp[x];
+
+return 0;
+}
+----------------------------------------------------------------------------------------------------------
+
+Memoization
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ const unsigned int M = 1000000007;
+int totalways(ll n,ll a[],ll sum,vector<ll> &dp)
+{
+if(sum==0)
+return 1;
+if(sum<0)
+return 0;
+ll ans=0;
+if(dp[sum]!=-1)
+return dp[sum]%M;
+for(int i=0;i<n;i++)
+{
+    if(sum-a[i]>=0)
+    ans=(ans%M+totalways(n,a,sum-a[i],dp)%M)%M;
+}
+return dp[sum]=(ans)%M;
+}
+ 
+void solve(){
+ll n,i,j,k,sum;
+cin>>n>>sum;
+ll a[n];
+vector<ll> dp(sum+1,-1);
+for(i=0;i<n;i++)
+cin>>a[i];
+cout<<totalways(n,a,sum,dp);
+return ;
+}
+int main()
+{
+std::ios::sync_with_stdio(false);
+cin.tie(NULL);
+int t=0;
+ 
+solve();
+ 
+return 0;
+}
