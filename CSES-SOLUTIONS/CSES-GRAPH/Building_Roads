@@ -1,0 +1,78 @@
+
+//PROBLEM LINK - https://cses.fi/problemset/task/1666
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+void bfs(vector<vector<int>> &graph ,vector<bool> &visited,int start)
+{
+
+list<int> adj;
+visited[start]=true;
+adj.push_back(start);
+while(!adj.empty()){
+
+int s= adj.front();
+adj.pop_front();
+for(auto it: graph[s])
+{
+ if(!visited[it]){   
+visited[it]=true;
+adj.push_back(it);
+ }
+}
+
+}
+}
+
+void createedge(vector<vector<int>> &graph , int u, int v)
+{
+graph[u].push_back(v);
+graph[v].push_back(u);
+
+}
+void solve(){
+int n,m;
+cin>>n>>m;
+n++;
+vector<vector<int>> graph(n);
+vector<int> vt;
+for(int i=0;i<m;i++)
+{
+int a, b;
+cin>>a>>b;
+
+createedge(graph,a,b);
+
+}
+vector<bool> visited(n,false);
+int count=0;
+for(int i=1;i<n;i++)
+{
+if(!visited[i])
+{
+    vt.push_back(i);
+    count++;
+    bfs(graph,visited,i);
+
+}
+}
+
+cout<<count-1<<endl;
+for(int i=1;i<vt.size();i++)
+{
+
+    cout<<vt[i-1]<<" "<<vt[i]<<endl;
+}
+
+return ;
+}
+int main()
+{
+std::ios::sync_with_stdio(false);
+cin.tie(NULL);
+
+solve();
+
+return 0;
+}
