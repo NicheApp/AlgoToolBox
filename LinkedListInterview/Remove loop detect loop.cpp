@@ -1,4 +1,3 @@
-Link -
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -10,31 +9,23 @@ Link -
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        ListNode* fast=head;
-        ListNode* slow=head;
-        while(fast && fast->next){
+        
+        ListNode* slow= head;
+        ListNode* fast= head;
+        ListNode* start= head;
+        while(fast!=NULL && fast->next!=NULL){
             
-            
+            slow=slow->next;
             fast=fast->next->next;
-            slow=slow->next;
-            if(fast==slow) break;
             
+            if(slow==fast){
+              while(slow!=start){
+                  slow=slow->next;
+                  start=start->next;
+              }
+                return start;
+            }
         }
-       if(fast==NULL || fast->next==NULL)
-            return NULL;
-        fast=head;
-        if(fast==slow)
-        {
-         while(fast->next!=slow) fast=fast->next;   
-            
-        }
-        else{
-        while(fast->next!=slow->next)
-        {
-            fast=fast->next;
-            slow=slow->next;
-        }
-        }
-        return fast->next;
+      return NULL;
     }
 };
