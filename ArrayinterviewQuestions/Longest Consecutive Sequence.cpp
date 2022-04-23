@@ -1,3 +1,7 @@
+/*
+Check only those elements which doesn't have any lower values.
+
+*/
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
