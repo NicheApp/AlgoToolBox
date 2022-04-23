@@ -1,4 +1,11 @@
-    vector<vector<int>> threeSum(vector<int>& nums) {
+/*    
+1.sort the Array
+2.check for every position
+3.do two pointers for rest of the array and find target (also remove duplicates)
+4.Repeat step 2 to 4 for all positions.
+
+*/
+vector<vector<int>> threeSum(vector<int>& nums) {
      int n=nums.size();
         vector<vector<int>> ans;
         sort(nums.begin(),nums.end());
