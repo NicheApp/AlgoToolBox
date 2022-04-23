@@ -1,5 +1,16 @@
 //https://www.youtube.com/watch?v=qtVh-XEpsJo&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=27
 //https://leetcode.com/problems/longest-substring-without-repeating-characters/
+/*
+Approach 
+Create a Hashmap and store indexes of character
+  whenever a characters Repeat than 
+     first calculate the distance between start pointer and repeating character position  also update the start pointer by next index of repeating character
+     then update repeating character index in hashmap.
+Note: Also while calculating repeating character just check either repeating character lies in window of start pointer to current index.
+
+In the last if there is no repeating characters or all characters are unique than update than calculate distance by n-start index .
+   
+*/
 
 class Solution {
 public:
